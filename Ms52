@@ -1,0 +1,28 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <openssl/md5.h>
+
+// Function to calculate the MD5 hash of a string
+void calculateMD5(const char *string, unsigned char *digest) {
+    MD5_CTX context;
+    MD5_Init(&context);
+    MD5_Update(&context, string, strlen(string));
+    MD5_Final(digest, &context);
+}
+
+int main() {
+    const char *input = "Hello, MD5!"; // Replace with your string
+
+    unsigned char digest[MD5_DIGEST_LENGTH];
+    calculateMD5(input, digest);
+
+    printf("Input: %s\n", input);
+    printf("MD5 Hash: ");
+    for (int i = 0; i < MD5_DIGEST_LENGTH; i++) {
+        printf("%02x", digest[i]);
+    }
+    printf("\n");
+
+    return 0;
+}
