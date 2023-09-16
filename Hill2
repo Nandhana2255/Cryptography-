@@ -1,0 +1,43 @@
+#include <stdio.h>
+#include <string.h>
+
+#define SIZE 5
+
+// Function to create the Playfair key matrix
+void createKeyMatrix(char key[], char matrix[SIZE][SIZE]) {
+    // Implement code to create the key matrix based on the provided key
+}
+
+// Function to find the positions of two letters in the matrix
+void findPositions(char matrix[SIZE][SIZE], char letter, int *row, int *col) {
+    // Implement code to find the positions of two letters in the matrix
+}
+
+// Function to encrypt a message using Playfair
+void encryptPlayfair(char matrix[SIZE][SIZE], char plaintext[], char ciphertext[]) {
+    // Implement code to encrypt the plaintext using Playfair
+}
+
+// Function to decrypt a message using Playfair
+void decryptPlayfair(char matrix[SIZE][SIZE], char ciphertext[], char plaintext[]) {
+    // Implement code to decrypt the ciphertext using Playfair
+}
+
+int main() {
+    char key[] = "KEYWORD"; // Replace with your key
+    char matrix[SIZE][SIZE];
+    char plaintext[] = "HELLO"; // Replace with your message
+    char ciphertext[strlen(plaintext)];
+
+    createKeyMatrix(key, matrix);
+
+    printf("Original Text: %s\n", plaintext);
+
+    encryptPlayfair(matrix, plaintext, ciphertext);
+    printf("Encrypted Text: %s\n", ciphertext);
+
+    decryptPlayfair(matrix, ciphertext, plaintext);
+    printf("Decrypted Text: %s\n", plaintext);
+
+    return 0;
+}
