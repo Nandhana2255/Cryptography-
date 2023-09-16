@@ -1,0 +1,49 @@
+#include <stdio.h>
+#include <stdint.h>
+
+// Permutation tables, S-boxes, and other constants go here
+
+// Initial Permutation (IP) table
+static int initial_permutation[] = {/*...*/};
+
+// Final Permutation (FP) table
+static int final_permutation[] = {/*...*/};
+
+// Expansion (E) table
+static int expansion_table[] = {/*...*/};
+
+// Substitution Boxes (S-boxes) go here
+
+// Key generation functions go here
+
+// Initial permutation function
+void initialPermutation(uint64_t* data) {
+    // Implement the initial permutation here
+}
+
+// Final permutation function
+void finalPermutation(uint64_t* data) {
+    // Implement the final permutation here
+}
+
+// DES encryption function
+void desEncrypt(uint64_t* data, uint64_t* key) {
+    // Implement the DES encryption algorithm here
+}
+
+int main() {
+    uint64_t plaintext = 0x0123456789ABCDEF; // Replace with your plaintext
+    uint64_t key = 0x133457799BBCDFF1;        // Replace with your encryption key
+
+    printf("Plaintext: 0x%016llx\n", plaintext);
+    printf("Key: 0x%016llx\n", key);
+
+    initialPermutation(&plaintext);
+    desEncrypt(&plaintext, &key);
+    finalPermutation(&plaintext);
+
+    printf("Encrypted Text: 0x%016llx\n", plaintext);
+
+    return 0;
+}
+
