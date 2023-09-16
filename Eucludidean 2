@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <math.h>
+
+// Function to calculate the greatest common divisor (GCD) using the Euclidean Algorithm
+int gcd(int a, int b) {
+    if (b == 0) {
+        return a;
+    }
+    return gcd(b, a % b);
+}
+
+int main() {
+    // Simplified example: Alice and Bob agree on public key (n, e) and private key (n, d)
+    int n = 187; // Modulus
+    int e = 3;   // Public exponent
+    int d = 107; // Private exponent
+
+    // Message to be signed
+    int message = 42;
+
+    // Alice signs the message
+    int signature = (int)pow(message, d) % n;
+
+    // Bob receives the message and signature and verifies it
+    int decrypted_message = (int)pow(signature, e) % n;
+
+    if (message == decrypted_message) {
+        printf("Signature is valid. Message: %d\n", decrypted_message);
+    } else {
+        printf("Invalid signature!\n");
+    }
+
+    return 0;
+}
