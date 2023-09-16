@@ -1,0 +1,28 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <openssl/sha.h>
+
+// Function to calculate the SHA-1 hash of a string
+void calculateSHA1(const char *string, unsigned char *digest) {
+    SHA_CTX context;
+    SHA1_Init(&context);
+    SHA1_Update(&context, string, strlen(string));
+    SHA1_Final(digest, &context);
+}
+
+int main() {
+    const char *input = "Hello, SHA-1!"; // Replace with your string
+
+    unsigned char digest[SHA_DIGEST_LENGTH];
+    calculateSHA1(input, digest);
+
+    printf("Input: %s\n", input);
+    printf("SHA-1 Hash: ");
+    for (int i = 0; i < SHA_DIGEST_LENGTH; i++) {
+        printf("%02x", digest[i]);
+    }
+    printf("\n");
+
+    return 0;
+}
