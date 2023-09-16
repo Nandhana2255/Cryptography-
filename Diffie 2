@@ -1,0 +1,50 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+// Function to calculate (base^exponent) % modulus efficiently
+long long modPow(long long base, long long exponent, long long modulus) {
+    long long result = 1;
+    base = base % modulus;
+
+    while (exponent > 0) {
+        // If the least significant bit of exponent is 1, multiply base with result
+        if (exponent % 2 == 1) {
+            result = (result * base) % modulus;
+        }
+
+        // Square base and reduce exponent by half
+        base = (base * base) % modulus;
+        exponent = exponent / 2;
+    }
+
+    return result;
+}
+
+int main() {
+    long long prime = 23;  // Replace with a large prime number
+    long long base = 5;    // Replace with a primitive root modulo prime
+
+    // Each user selects a private key (a and b)
+    long long privateA = 6; // User A's private key
+    long long privateB = 15; // User B's private key
+
+    // Both users calculate their public keys (A and B)
+    long long publicA = modPow(base, privateA, prime);
+    long long publicB = modPow(base, privateB, prime);
+
+    // Users exchange public keys (A and B)
+
+    // Both users calculate the shared secret key
+    long long secretKeyA = modPow(publicB, privateA, prime);
+    long long secretKeyB = modPow(publicA, privateB, prime);
+
+    printf("User A's private key: %lld\n", privateA);
+    printf("User B's private key: %lld\n", privateB);
+    printf("User A's public key: %lld\n", publicA);
+    printf("User B's public key: %lld\n", publicB);
+    printf("Shared Secret Key (A): %lld\n", secretKeyA);
+    printf("Shared Secret Key (B): %lld\n", secretKeyB);
+
+    return 0;
+}
