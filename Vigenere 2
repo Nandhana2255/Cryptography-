@@ -1,0 +1,32 @@
+#include <stdio.h>
+#include <string.h>
+
+// Function to encrypt a message using the Vigenère Cipher
+void vigenereEncrypt(char *plaintext, char *key) {
+    int plainLen = strlen(plaintext);
+    int keyLen = strlen(key);
+
+    for (int i = 0; i < plainLen; i++) {
+        char plainChar = plaintext[i];
+        char keyChar = key[i % keyLen]; // Repeating key
+
+        if (plainChar >= 'A' && plainChar <= 'Z') {
+            // Encrypt uppercase letters
+            plaintext[i] = 'A' + (plainChar - 'A' + keyChar - 'A') % 26;
+        } else if (plainChar >= 'a' && plainChar <= 'z') {
+            // Encrypt lowercase letters
+            plaintext[i] = 'a' + (plainChar - 'a' + keyChar - 'A') % 26;
+        }
+    }
+}
+
+int main() {
+    char plaintext[] = "HELLO"; // Replace with your message
+    char key[] = "KEY";         // Replace with your encryption key
+
+    printf("Original Text: %s\n", plaintext);
+    vigenereEncrypt(plaintext, key);
+    printf("Encrypted Text: %s\n", plaintext);
+
+    return 0;
+}
